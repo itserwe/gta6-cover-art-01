@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Shore — Pembuat Cover Gaya Poster</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="sun-mark" aria-hidden="true"></span>
+    <div>
+      <h1>Neon Shore</h1>
+      <p>Pembuat cover gaya poster — foto jadi sampul, 100% offline</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="undoBtn" type="button" class="ghost-btn" disabled>↩ Urungkan</button>
+    <button id="redoBtn" type="button" class="ghost-btn" disabled>↪ Ulangi</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="preview-wrap">
+    <canvas id="preview" width="880" height="880" aria-label="Pratinjau cover"></canvas>
+    <p class="preview-hint">Klik sebuah panel untuk memilihnya, lalu <b>seret</b> untuk menggeser foto dan <b>gulir</b> untuk zoom. <span id="selectedPanel">Panel 1 dari 4</span></p>
+    <p id="status" class="status" role="status">Memuat foto contoh…</p>
+  </section>
+
+  <aside class="controls">
+    <section class="card">
+      <h2>1 · Foto</h2>
+      <p class="card-note">Foto dibaca di perangkatmu saja dan tidak pernah diunggah.</p>
+      <div class="btn-row">
+        <button id="uploadBtn" type="button" class="primary-btn">＋ Unggah foto</button>
+        <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      </div>
+      <div class="btn-row">
+        <button id="sampleA" type="button" class="chip-btn">Contoh · Boulevard</button>
+        <button id="sampleB" type="button" class="chip-btn">Contoh · Dermaga</button>
+      </div>
+      <div id="photoSlots" class="photo-slots"></div>
+      <div class="btn-row">
+        <button id="fillAllBtn" type="button" class="chip-btn">Satu foto di semua panel</button>
+        <button id="shuffleBtn" type="button" class="chip-btn">Acak panel</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2 · Layout panel</h2>
+      <div id="layoutBtns" class="btn-grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Grade warna</h2>
+      <div id="gradeBtns" class="btn-grid"></div>
+    </section>
+
+    <section class="card">
+      <h2>4 · Caption</h2>
+      <label class="field-label" for="titleInput">Judul besar</label>
+      <input id="titleInput" type="text" value="NEON SHORE" maxlength="24" autocomplete="off">
+      <label class="field-label" for="subtitleInput">Subjudul neon</label>
+      <input id="subtitleInput" type="text" value="Golden hour on the boulevard" maxlength="48" autocomplete="off">
+      <label class="field-label" for="titleSizeRange">Ukuran judul</label>
+      <input id="titleSizeRange" type="range" min="0.7" max="1.4" step="0.05" value="1">
+      <label class="field-label" for="titlePosSelect">Posisi judul</label>
+      <select id="titlePosSelect">
+        <option value="bottom" selected>Bawah</option>
+        <option value="top">Atas</option>
+      </select>
+    </section>
+
+    <section class="card">
+      <h2>5 · Panel terpilih</h2>
+      <label class="field-label" for="zoomRange">Zoom foto — <span id="zoomVal">115%</span></label>
+      <input id="zoomRange" type="range" min="1" max="2.5" step="0.05" value="1.15">
+      <label class="check-row"><input id="grainCheck" type="checkbox" checked> Grain film</label>
+      <label class="check-row"><input id="vignetteCheck" type="checkbox" checked> Vignette</label>
+    </section>
+
+    <section class="card export-card">
+      <h2>6 · Ekspor PNG</h2>
+      <div id="sizeBtns" class="btn-grid"></div>
+      <div class="btn-row export-row">
+        <button type="button" class="export-btn" data-export="1080x1080">PNG 1080×1080</button>
+        <button type="button" class="export-btn" data-export="1080x1350">PNG 1080×1350</button>
+        <button type="button" class="export-btn" data-export="1920x1080">PNG 1920×1080</button>
+      </div>
+      <button id="exportAllBtn" type="button" class="primary-btn wide">Unduh ketiga ukuran</button>
+    </section>
+
+    <p class="fine-print">Karya asli: semua panel, matahari, huruf dan efek digambar oleh aplikasi ini. Tanpa logo, artwork, atau font dari game mana pun.</p>
+  </aside>
+</main>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
